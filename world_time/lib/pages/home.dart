@@ -10,9 +10,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
-    print(data);
+    data = data.isEmpty ? ModalRoute.of(context).settings.arguments : data;
 
+    // Set background
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
     Color bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo[700];
 
@@ -53,8 +53,13 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: 20.0),
                 FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async {
+                    var result =
+                        await Navigator.pushNamed(context, '/location');
+                    setState(() {
+                      // TODO: colocar cada parametro individualmente
+                      data = result;
+                    });
                   },
                   label: Text(
                     'Edit Location',
