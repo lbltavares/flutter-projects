@@ -14,9 +14,9 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin {
 
   void setupWorldTime() async {
     WorldTimeService wt = WorldTimeService(
-      location: 'America',
-      flag: 'brazil.png',
-      url: 'America/Sao_Paulo',
+      location: 'Berlin',
+      flag: 'germany.png',
+      url: 'Europe/Berlin',
     );
     await wt.getTime();
     // Delay proposital para mostrar a animação:
@@ -25,6 +25,7 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin {
       'location': wt.location,
       'flag': wt.flag,
       'time': wt.time,
+      'isDayTime': wt.isDaytime,
     });
   }
 

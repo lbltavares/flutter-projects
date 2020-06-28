@@ -12,42 +12,67 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     print(data);
+
+    String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
+    Color bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo[700];
+
     return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 120.0, 0, 0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: bgColor,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/$bgImage'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 120.0, 0, 0),
+            child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      data['location'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
                 Text(
-                  data['location'],
+                  data['time'],
                   style: TextStyle(
-                    fontSize: 28.0,
-                    letterSpacing: 2.0,
+                    color: Colors.white,
+                    fontSize: 66.0,
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                FlatButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/location');
+                  },
+                  label: Text(
+                    'Edit Location',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  icon: Icon(
+                    Icons.edit_location,
+                    color: Colors.redAccent,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20.0),
-            Text(
-              data['time'],
-              style: TextStyle(
-                fontSize: 66.0,
-              ),
-            ),
-            SizedBox(height: 20.0),
-            FlatButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/location');
-              },
-              label: Text('Edit Location'),
-              icon: Icon(Icons.edit_location),
-            ),
-          ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
