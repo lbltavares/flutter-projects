@@ -1,4 +1,4 @@
-name: cookbooks
+name: smartswitch
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -23,9 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
   http: ^0.12.1
   flutter_spinkit: ^4.1.2+1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

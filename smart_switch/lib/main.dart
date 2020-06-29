@@ -1,6 +1,6 @@
-import 'package:cookbooks/screens/loading.dart';
+import 'package:smartswitch/screens/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:cookbooks/screens/control.dart';
+import 'package:smartswitch/screens/control.dart';
 
 void main() => runApp(App());
 
